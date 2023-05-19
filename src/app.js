@@ -2,36 +2,44 @@
 import "bootstrap";
 import "./style.css";
 
-window.onload = () => {
-  document.querySelector("#btn").addEventListener("click", () => {
-    document.querySelector("#excuse").innerHTML = generateExcuse();
-  });
-};
+const who = [
+  "My dog",
+  "A strange person",
+  "Elvis",
+  "My best friend",
+  "Someone"
+];
 
-let generateExcuse = () => {
-  let who = ["The dog", "My grandma", "His turtle", "My bird"];
-  let action = ["ate", "peed on", "crushed", "broke"];
-  let what = ["my homework", "the keys", "the car"];
-  let when = [
-    "before the class!",
-    "right on time!",
-    "when I finished !",
-    "during my lunch!",
-    "while I was playing!"
-  ];
+const action = ["ate", "played with", "burnt", "flushed away", "tore"];
 
-  let whoIndx = Math.floor(Math.random() * who.length);
-  let actionIndx = Math.floor(Math.random() * action.length);
-  let whatIndx = Math.floor(Math.random() * what.length);
-  let whenIndx = Math.floor(Math.random() * when.length);
+const what = ["my homewok", "the keys", "my car", "the box", "the dinner"];
 
-  return (
-    who[whoIndx] +
-    " " +
-    action[actionIndx] +
-    " " +
-    what[whatIndx] +
-    " " +
-    when[whenIndx]
+const when = [
+  "before the class!",
+  "right on time!",
+  "when I finished!",
+  "during my lunch!",
+  "while I was playing!"
+];
+
+function getRandomItem(list) {
+  const randomIndex = Math.floor(Math.random() * list.length);
+  return list[randomIndex];
+}
+
+function getRandomPhrase() {
+  return `${getRandomItem(who)} ${getRandomItem(action)} 
+  ${getRandomItem(what)} ${getRandomItem(when)}`;
+}
+document
+  .getElementById("button")
+  .addEventListener(
+    "click",
+    e =>
+      (document.getElementById("phrase").innerHTML = getRandomPhrase(
+        who,
+        action,
+        what,
+        when
+      ))
   );
-};
